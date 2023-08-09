@@ -21,20 +21,27 @@ function App() {
   console.log(url)
    
   useEffect(() => {
-    fetchData()
+    fetchApiConfig()
    },[])
 
-  const fetchData = () => {
-    fetchDataFromApi( "/movie/popular")
+  const fetchApiConfig = () => {
+    fetchDataFromApi( "/configuration")
       .then((res) => {
-        // console.log(res)
-        dispatch(getApiConfiguration(res))
+        console.log(res)
+        
+        const url = {
+          backdrop: res.images.secure_base_url + "original",
+          posters: res.images.secure_base_url + "original",
+          profile: res.images.secure_base_url + "original",      
+        } 
+        
+        dispatch(getApiConfiguration(url))
       })
   }
 
   return (
     <div className='App'>
-      <Header />
+      {/* <Header /> */}
       <BrowserRouter>
         <Routes>
            <Route path='/' element={<HomePage />} />

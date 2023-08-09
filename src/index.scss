@@ -11,13 +11,11 @@
   -webkit-text-size-adjust: 100%;
 
   --black: #010101;
-  --black2: #041226;
-  --black3: #020c1b;
+  --black2: #00060e;
+  --black3: #191a1b;
   --black-lighter: #1B1212;
   --black-light: #020c1b;
-  --pink: #da2f68;
-  --orange: #f89e00;
-  --gradient: linear-gradient(98.37deg, #f89e00 0.99%, #da2f68 100%);
+  --gradient: linear-gradient(98.37deg, rgb(37, 37, 37) 0.99%, rgb(14, 13, 13) 100%);
 }
 
 * {
