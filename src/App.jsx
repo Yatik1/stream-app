@@ -41,8 +41,8 @@ function App() {
 
   return (
     <div className='App'>
-      {/* <Header /> */}
       <BrowserRouter>
+        <Header />
         <Routes>
            <Route path='/' element={<HomePage />} />
            <Route path='/explore/:mediaType' element={<Explore />} />
@@ -50,8 +50,8 @@ function App() {
            <Route path='/search/:query' element={<SearchResult />}/>
            <Route path='*' element={<PageNotFound />}/>
         </Routes>
+        <Footer />
       </BrowserRouter>
-      <Footer />
     </div>
   )
 }

@@ -5,6 +5,7 @@ function HomePage() {
   return (
     <div className='homepage'>
        <HeroBanner />
+       <div style={{height: 500}}></div>
     </div>
   )
 }
