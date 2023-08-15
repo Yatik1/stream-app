@@ -32,7 +32,7 @@ function HeroBanner() {
        {!loading && <div className="backdrop-img">
           <Img src={background}/>
        </div>}
-
+      <div className="opacity-layer"></div>
       <ContentWrapper>
          <div className="heroBannerContent">
               <span className="title">
