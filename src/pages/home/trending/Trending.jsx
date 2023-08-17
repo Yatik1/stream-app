@@ -1,13 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ContentWrapper from "../../../components/contentWrapper/ContentWrapper"
 import SwitchTab from '../../../components/switchTab/SwitchTab';
+import useFetch from "../../../hooks/useFetch"
+import Carousel from '../../../components/carousel/Carousel';
 
 import "./Trending.scss"
 
-
 const Trending = () => {
-
-  const onTabChange = (tab) => {};
+  
+  const [endpoint,setEndpoint] = useState("day")
+ 
+  const {data , loading} = useFetch( `/trending/all/${endpoint}` ) 
+  const onTabChange = (tab) => {
+    setEndpoint( tab === "Day" ? "day" : "week")
+  };
 
   return (
      <div className="carouselSection">
@@ -17,6 +23,8 @@ const Trending = () => {
          </span>
          <SwitchTab data={["Day" , "Week"]} onTabChange={onTabChange}/>
        </ContentWrapper>
+       
+       <Carousel data={data?.result} loading={loading}/>
      </div>
   )
 }
