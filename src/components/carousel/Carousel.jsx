@@ -34,7 +34,38 @@ const Carousel = ({data,loading}) => {
             <BsFillArrowRightCircleFill 
                 className="carouselRighttNav arrow"
                 onClick={() => navigation("right")}/>
-        </ContentWrapper>
+
+        {!loading ? (
+           <div className="carouselItems">
+             {data?.map((item) => {
+                const posterUrl = item.poster_path ? url.poster + item.poster_path : PosterFallback
+
+                return (
+                    <div key={item.id} className="carouselItem">
+                        <div className="posterBlock">
+                           <Img src={posterUrl}/>    
+                        </div>  
+                        <div className="textBlock">
+                           <span className="title">
+                             {item.title || item.name }
+                           </span>
+                           <span className="date">
+                             {dayjs(item.release_Date).format(
+                                "MMM D, YYYY"
+                             )}
+                           </span>
+                        </div>
+                    </div>
+                )
+             })}
+           </div>
+        ): (
+          <span>
+             Loading ...... 
+          </span>
+        )}  
+     </ContentWrapper>
+     
     </div>
   )
 }
