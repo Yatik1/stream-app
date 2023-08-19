@@ -13,6 +13,7 @@ import PosterFallback from "../../assets/no-poster.png";
 
 import "./carousel.scss"
 import Rating from "../rating/Rating";
+import Genres from "../genres/Genres";
 
 const Carousel = ({data,loading}) => { 
 
@@ -56,6 +57,9 @@ const Carousel = ({data,loading}) => {
                         <div className="posterBlock">
                            <Img src={posterUrl}/>   
                            <Rating rating={item.vote_average.toFixed(1)}/> 
+
+                            <Genres data={item.genre_ids.slice(0,2)}/>
+
                         </div>  
                         <div className="textBlock">
                            <span className="title">
