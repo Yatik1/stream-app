@@ -9,7 +9,7 @@ import Genres from "../../../components/genres/Genres";
 import Rating from "../../../components/rating/Rating"
 import Img from "../../../components/lazyLoadImage/Img.jsx";
 import PosterFallback from "../../../assets/no-poster.png";
-// import { PlayIcon } from "../Playbtn";
+import { PlayIcon } from "../Playbtn";
 // import VideoPopup from "../../../components/videoPopup/VideoPopup";
 
 import "./detailsbanner.scss"
@@ -64,6 +64,10 @@ const DetailsBanner = ({vedio,crew}) => {
 
                           <div className="row">
                             <Rating rating={data.vote_average.toFixed(1)} />
+                            <div className="playbtn">
+                              <PlayIcon />
+                              <span className='text'>Watch Trailer</span>
+                            </div>
                           </div>
                      </div>
                     </div>

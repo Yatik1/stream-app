@@ -100,10 +100,10 @@
                 }
             }
             .circleRating {
-                max-width: 70px;
+                max-width: 53px;
                 background-color: var(--black2);
                 @include md {
-                    max-width: 90px;
+                    max-width: 65px;
                 }
                 .CircularProgressbar-text {
                     fill: white;
@@ -112,44 +112,45 @@
             .playbtn {
                 display: flex;
                 align-items: center;
-                gap: 20px;
+                gap: 10px;
                 cursor: pointer;
                 svg {
-                    width: 60px;
+                    width: 40px;
                     @include md {
-                        width: 80px;
+                        width: 60px;
                     }
                 }
                 .text {
+                    color: gray;
                     font-size: 20px;
                     transition: all 0.7s ease-in-out;
                 }
                 .triangle {
                     stroke-dasharray: 240;
                     stroke-dashoffset: 480;
-                    stroke: white;
+                    stroke: gray;
                     transform: translateY(0);
                     transition: all 0.7s ease-in-out;
                 }
                 .circle {
-                    stroke: white;
+                    stroke: gray;
                     stroke-dasharray: 650;
                     stroke-dashoffset: 1300;
                     transition: all 0.5s ease-in-out;
                 }
                 &:hover {
                     .text {
-                        color: var(--pink);
+                        color: white;
                     }
                     .triangle {
                         stroke-dashoffset: 0;
                         opacity: 1;
-                        stroke: var(--pink);
+                        stroke: white;
                         animation: trailorPlay 0.7s ease-in-out;
                     }
                     .circle {
                         stroke-dashoffset: 0;
-                        stroke: var(--pink);
+                        stroke: white;
                     }
                 }
             }
