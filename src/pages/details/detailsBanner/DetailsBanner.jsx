@@ -1,14 +1,14 @@
 import React from 'react'
 import { useParams } from "react-router-dom";
-// import { useSelector } from "react-redux";
-// import dayjs from "dayjs";
+import { useSelector } from "react-redux";
+import dayjs from "dayjs";
 
 import ContentWrapper from "../../../components/contentWrapper/ContentWrapper";
 import useFetch from "../../../hooks/useFetch";
-// import Genres from "../../../components/genres/Genres";
-// import CircleRating from "../../../components/circleRating/CircleRating";
-// import Img from "../../../components/lazyLoadImage/Img.jsx";
-// import PosterFallback from "../../../assets/no-poster.png";
+import Genres from "../../../components/genres/Genres";
+import Rating from "../../../components/rating/Rating"
+import Img from "../../../components/lazyLoadImage/Img.jsx";
+import PosterFallback from "../../../assets/no-poster.png";
 // import { PlayIcon } from "../Playbtn";
 // import VideoPopup from "../../../components/videoPopup/VideoPopup";
 
@@ -19,6 +19,10 @@ const DetailsBanner = ({vedio,crew}) => {
   const {mediaType,id} = useParams();
   const {data,loading} = useFetch(`/${mediaType}/${id}`);
 
+  const {url} = useSelector((state) => state.home)
+
+  const _genres = data?.genres?.map((g) => g.id)
+
   const toHoursAndMinutes = (totalMinutes) => {
     const hours = Math.floor(totalMinutes / 60)
     const minutes = totalMinutes / 60;
@@ -28,7 +32,45 @@ const DetailsBanner = ({vedio,crew}) => {
   return (
     <div className="detailsBanner">
         {!loading ? (
-             <div>Details Content .... </div>
+            <>
+             {!!data && (
+              <React.Fragment>
+                  <div className="backdrop-img">
+                      <Img src={url.backdrop + data.backdrop_path} />
+                  </div> 
+                  <div className="opacity-layer"></div>
+                  <ContentWrapper>
+                    <div className="content">
+                        <div className="left">
+                          {data.poster_path ? (
+                            <Img className='posterImg' src={url.backdrop + data.poster_path} />
+                          ) : (
+                            <Img className='posterImg' src={PosterFallback} />
+                          )}
+                     </div>
+                     <div className="right">
+                          <div className="title">
+                               {`${
+                                   data.name || data.title
+                               } (${dayjs(
+                                   data?.release_date
+                               ).format("YYYY")})`}
+                           </div>
+                           <div className="subtitle">
+                               {data.tagline}
+                          </div>
+
+                          <Genres data={_genres}/>
+
+                          <div className="row">
+                            <Rating rating={data.vote_average.toFixed(1)} />
+                          </div>
+                     </div>
+                    </div>
+                  </ContentWrapper>
+              </React.Fragment>
+            )}
+            </>
         ):
         (
             <div className="detailsBannerSkeleton">

@@ -5,8 +5,8 @@ import DetailsBanner from './detailsBanner/DetailsBanner';
 
 const Details = () => {
 
-  // const {data,loading} = useFetch();
-  // const {mediaType,id} = useParams();
+  const {data,loading} = useFetch();
+  const {mediaType,id} = useParams();
 
   return (
     <div>
