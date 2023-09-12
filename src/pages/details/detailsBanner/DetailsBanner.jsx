@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import dayjs from "dayjs";
@@ -10,11 +10,14 @@ import Rating from "../../../components/rating/Rating"
 import Img from "../../../components/lazyLoadImage/Img.jsx";
 import PosterFallback from "../../../assets/no-poster.png";
 import { PlayIcon } from "../Playbtn";
-// import VideoPopup from "../../../components/videoPopup/VideoPopup";
+import VideoPopUp from '../../../components/videoPopup/VideoPopUp';
 
 import "./detailsbanner.scss"
 
-const DetailsBanner = ({vedio,crew}) => {
+const DetailsBanner = ({video,crew}) => {
+   
+  const [show,setShow] = useState(false)
+  const [videoId, setVideoId] = useState(null)
 
   const {mediaType,id} = useParams();
   const {data,loading} = useFetch(`/${mediaType}/${id}`);
@@ -68,7 +71,10 @@ const DetailsBanner = ({vedio,crew}) => {
                           <div className="row">
                             <Rating rating={data.vote_average.toFixed(1)} />
                             
-                            <div className="playbtn" onClick={()=> {}}>
+                            <div className="playbtn" onClick={()=> { 
+                               setShow(true)
+                               setVideoId(video.key)
+                            }}>
                               <PlayIcon />
                               <span className='text'>Watch Trailer</span>
                             </div>
@@ -164,6 +170,12 @@ const DetailsBanner = ({vedio,crew}) => {
          
                       </div>
                     </div>
+                    <VideoPopUp 
+                      show={show}
+                      setShow={setShow}
+                      videoId={videoId}
+                      setVideoId={setVideoId}
+                    />
                   </ContentWrapper>
               </React.Fragment>
             )}
